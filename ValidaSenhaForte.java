@@ -12,38 +12,31 @@ public class ValidaSenhaForte {
             System.out.print("Informe uma senha fictícia: ");
             String senha = scanner.nextLine();
 
-            String feedback = avaliarSenha(senha);
-
-            if (feedback.equals("OK")) {
-                System.out.println("Senha aprovada nos critérios avaliados!\n");
-                senhaValida = true;
-            } else {
-                System.out.println("Orientação: " + feedback);
+            if (senha == null || senha.length() < 8) {
+                System.out.println("Orientação: A senha deve conter no mínimo 8 caracteres.");
                 System.out.println("Tente novamente.\n");
+                continue;
             }
+
+            boolean temNumero = false;
+            for (int i = 0; i < senha.length(); i++) {
+                char c = senha.charAt(i);
+                if (Character.isDigit(c)) {
+                    temNumero = true;
+                    break;
+                }
+            }
+
+            if (!temNumero) {
+                System.out.println("Orientação: A senha deve conter pelo menos um número.");
+                System.out.println("Tente novamente.\n");
+                continue;
+            }
+
+            System.out.println("Senha aprovada nos critérios avaliados!\n");
+            senhaValida = true;
         }
 
         scanner.close();
-    }
-
-    public static String avaliarSenha(String senha) {
-        if (senha == null || senha.length() < 8) {
-            return "A senha deve conter no mínimo 8 caracteres.";
-        }
-
-        boolean temNumero = false;
-        for (int i = 0; i < senha.length(); i++) {
-            char c = senha.charAt(i);
-            if (Character.isDigit(c)) {
-                temNumero = true;
-                break;
-            }
-        }
-
-        if (!temNumero) {
-            return "A senha deve conter pelo menos um número.";
-        }
-
-        return "OK";
     }
 }
