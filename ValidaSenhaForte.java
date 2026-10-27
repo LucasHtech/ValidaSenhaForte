@@ -16,15 +16,11 @@ public class ValidaSenhaForte {
                 System.out.println("Orientação: A senha deve conter no mínimo 8 caracteres.");
                 System.out.println("Tente novamente.\n");
             } else {
-                boolean temNumero = false;
-
-                for (int i = 0; i < senha.length(); i++) {
-                    char c = senha.charAt(i);
-                    if (c >= '0' && c <= '9') {
-                        temNumero = true;
-                        break;
-                    }
-                }
+                boolean temNumero = senha.contains("0") || senha.contains("1") ||
+                                   senha.contains("2") || senha.contains("3") ||
+                                   senha.contains("4") || senha.contains("5") ||
+                                   senha.contains("6") || senha.contains("7") ||
+                                   senha.contains("8") || senha.contains("9");
 
                 if (!temNumero) {
                     System.out.println("Orientação: A senha deve conter pelo menos um número.");
